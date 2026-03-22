@@ -4,40 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- תגיות מטא להטמעה בקנבה (Open Graph) -->
-    <meta property="og:title" content="מחולל הפרומפט המנצח 🚀">
-    <meta property="og:description" content="כלי עזר לתלמידים ליצירת פרומפטים מדויקים לאפליקציות ואתרים.">
+    <!-- תגיות מטא קריטיות להטמעה בקנבה -->
+    <title>מחולל הפרומפט המנצח 🚀</title>
+    <meta name="description" content="כלי עזר לתלמידים ליצירת פרומפטים מדויקים לאפליקציות ואתרים.">
+    
+    <!-- Open Graph / Facebook (קנבה משתמשת בזה) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shpol11.github.io/prompt-generator/">
-    
-    <title>מחולל הפרומפט המנצח 🚀</title>
-    
-    <!-- Tailwind CSS לעיצוב מודרני -->
+    <meta property="og:title" content="מחולל הפרומפט המנצח 🚀">
+    <meta property="og:description" content="הפכו רעיון לאפליקציה לפרומפט מושלם עבור בינה מלאכותית.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/sparkles.png">
+
+    <!-- Twitter (גם זה עוזר לקנבה לזהות את האתר) -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shpol11.github.io/prompt-generator/">
+    <meta property="twitter:title" content="מחולל הפרומפט המנצח 🚀">
+    <meta property="twitter:description" content="הכלי שילמד אתכם לכתוב פרומפטים כמו מקצוענים.">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons לאייקונים יפים -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Assistant', sans-serif;
             background-color: #f8fafc;
         }
-        .step-transition {
-            transition: all 0.3s ease-in-out;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .magic-btn:active {
-            transform: scale(0.95);
-        }
+        .step-transition { transition: all 0.3s ease-in-out; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade {
-            animation: fadeIn 0.4s ease-out forwards;
-        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 </head>
 <body class="min-h-screen text-slate-900">
@@ -53,6 +54,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div class="lg:col-span-2 space-y-6">
+                <!-- סרגל התקדמות -->
                 <nav class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200 flex justify-between items-center px-4">
                     <div class="flex flex-1 justify-between relative">
                         <div class="absolute top-6 right-0 left-0 h-1 bg-slate-100 -z-0"></div>
@@ -117,10 +119,6 @@
                             <span class="text-slate-500">קוד נקי ללא ספריות</span>
                             <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">V</span>
                         </div>
-                        <div class="flex justify-between text-xs items-center">
-                            <span class="text-slate-500">נגישות בסיסית</span>
-                            <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">V</span>
-                        </div>
                     </div>
                 </div>
             </aside>
@@ -133,17 +131,7 @@
 
     <script>
         let currentStep = 0;
-        const formData = {
-            appType: '',
-            targetAudience: '',
-            problem: '',
-            actions: '',
-            inputs: '',
-            outputs: '',
-            style: 'מודרני',
-            colors: '',
-            buttonStyle: 'עגולים'
-        };
+        const formData = { appType: '', targetAudience: '', problem: '', actions: '', inputs: '', outputs: '', style: 'מודרני', colors: '', buttonStyle: 'עגולים' };
 
         const steps = [
             {
@@ -165,13 +153,13 @@
                 iconColor: "text-blue-500",
                 tips: ["תיאור טוב כולל קלט ופלט.", "בקשו שמירה בדפדפן כדי שהנתונים לא יימחקו."],
                 quickFills: [
-                    { label: "שמירת נתונים", text: "הוסף שמירה ב-LocalStorage כדי שהמידע יישמר גם אחרי רענון." },
+                    { label: "שמירת נתונים", text: "הוסף שמירה ב-LocalStorage כדי שיישמר." },
                     { label: "מצב לילה", text: "הוסף כפתור שמחליף בין עיצוב בהיר לכהה." }
                 ],
                 fields: [
-                    { key: 'actions', label: 'מה קורה כשלוחצים על כפתורים?', placeholder: 'למשל: כשלוחצים על השקיתי מופיעה אנימציה...' },
-                    { key: 'inputs', label: 'מה המשתמש מקליד/בוחר?', placeholder: 'למשל: שם הצמח...' },
-                    { key: 'outputs', label: 'מה המשתמש רואה כתוצאה?', placeholder: 'למשל: רשימת פריטים...' }
+                    { key: 'actions', label: 'מה קורה כשלוחצים על כפתורים?', placeholder: 'למשל: לחיצה מוסיפה נקודה...' },
+                    { key: 'inputs', label: 'מה המשתמש מקליד?', placeholder: 'למשל: שם משתמש...' },
+                    { key: 'outputs', label: 'מה המשתמש רואה?', placeholder: 'למשל: הודעת הצלחה...' }
                 ]
             },
             {
@@ -190,47 +178,27 @@
             },
             {
                 title: "הפרומפט המנצח",
-                subtitle: "הכל מוכן! רק להעתיק.",
+                subtitle: "הכל מוכן!",
                 icon: "sparkles",
                 iconColor: "text-yellow-500",
                 tips: ["העתיקו את הקוד המלא שה-AI ייתן לכם.", "שמרו את הקוד בקובץ בשם index.html."]
             }
         ];
 
-        function initApp() {
-            render();
-            lucide.createIcons();
-        }
+        function initApp() { render(); lucide.createIcons(); }
 
         function render() {
             const data = steps[currentStep];
-            document.getElementById('step-header').innerHTML = `
-                <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 ${data.iconColor}">
-                    <i data-lucide="${data.icon}" class="w-6 h-6"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800">${data.title}</h2>
-                    <p class="text-slate-500 text-sm">${data.subtitle}</p>
-                </div>
-            `;
-            document.getElementById('tips-list').innerHTML = data.tips.map(tip => `
-                <li class="flex gap-3 items-start">
-                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 shrink-0"></div>
-                    <span>${tip}</span>
-                </li>
-            `).join('');
+            document.getElementById('step-header').innerHTML = `<div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 ${data.iconColor}"><i data-lucide="${data.icon}" class="w-6 h-6"></i></div><div><h2 class="text-2xl font-bold text-slate-800">${data.title}</h2><p class="text-slate-500 text-sm">${data.subtitle}</p></div>`;
+            document.getElementById('tips-list').innerHTML = data.tips.map(tip => `<li class="flex gap-3 items-start"><div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 shrink-0"></div><span>${tip}</span></li>`).join('');
 
             const content = document.getElementById('step-content');
-            content.classList.remove('animate-fade');
-            void content.offsetWidth;
-            content.classList.add('animate-fade');
+            content.classList.remove('animate-fade'); void content.offsetWidth; content.classList.add('animate-fade');
 
             if (currentStep < 3) {
                 let html = '<div class="space-y-6">';
                 if (data.quickFills) {
-                    html += `<div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 mb-6 flex flex-wrap gap-2">
-                        ${data.quickFills.map(f => `<button onclick="addQuickFill('${f.text}')" class="bg-white hover:bg-blue-600 hover:text-white text-blue-600 border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm">+ ${f.label}</button>`).join('')}
-                    </div>`;
+                    html += `<div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 mb-6 flex flex-wrap gap-2">${data.quickFills.map(f => `<button onclick="addQuickFill('${f.text}')" class="bg-white hover:bg-blue-600 hover:text-white text-blue-600 border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-semibold Shadow-sm">+ ${f.label}</button>`).join('')}</div>`;
                 }
                 if (data.options) {
                     data.options.forEach(opt => {
@@ -240,34 +208,16 @@
                     });
                 }
                 data.fields.forEach(f => {
-                    html += `<div><label class="block text-sm font-bold text-slate-700 mb-2">${f.label}</label>
-                    <textarea oninput="updateFormData('${f.key}', this.value)" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-800" placeholder="${f.placeholder}">${formData[f.key]}</textarea></div>`;
+                    html += `<div><label class="block text-sm font-bold text-slate-700 mb-2">${f.label}</label><textarea oninput="updateFormData('${f.key}', this.value)" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-800" placeholder="${f.placeholder}">${formData[f.key]}</textarea></div>`;
                 });
-                html += '</div>';
-                content.innerHTML = html;
+                content.innerHTML = html + '</div>';
             } else {
-                content.innerHTML = `
-                    <div class="space-y-6">
-                        <div class="bg-green-50 border border-green-100 p-5 rounded-2xl flex gap-4 items-start shadow-sm">
-                            <i data-lucide="check-circle-2" class="w-8 h-8 text-green-600"></i>
-                            <div><h4 class="font-bold text-green-900">הנחיה מוכנה!</h4><p class="text-sm text-green-800">העתיקו את הטקסט למטה והדביקו אותו בצ'אט של Gemini.</p></div>
-                        </div>
-                        <div class="relative group">
-                            <div id="final-prompt" class="w-full h-80 p-6 bg-slate-900 text-slate-300 rounded-3xl font-mono text-sm overflow-auto whitespace-pre-wrap leading-relaxed border-4 border-slate-800 shadow-2xl scrollbar-hide">${generateFinalPrompt()}</div>
-                            <button onclick="copyPrompt()" class="absolute bottom-6 left-6 flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl hover:bg-blue-700 transition-all">
-                                <i data-lucide="copy" class="w-5 h-5"></i> העתק והתחל לבנות
-                            </button>
-                        </div>
-                    </div>`;
+                content.innerHTML = `<div class="space-y-6"><div class="bg-green-50 border border-green-100 p-5 rounded-2xl flex gap-4 items-start shadow-sm"><i data-lucide="check-circle-2" class="w-8 h-8 text-green-600"></i><div><h4 class="font-bold text-green-900">הנחיה מוכנה!</h4><p class="text-sm text-green-800">העתיקו את הטקסט למטה והדביקו ב-Gemini.</p></div></div><div class="relative group"><div id="final-prompt" class="w-full h-80 p-6 bg-slate-900 text-slate-300 rounded-3xl font-mono text-sm overflow-auto whitespace-pre-wrap border-4 border-slate-800 scrollbar-hide">${generateFinalPrompt()}</div><button onclick="copyPrompt()" class="absolute bottom-6 left-6 flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl hover:bg-blue-700 transition-all"><i data-lucide="copy" class="w-5 h-5"></i> העתק</button></div></div>`;
             }
 
             document.getElementById('prev-btn').disabled = currentStep === 0;
-            document.getElementById('footer-actions').innerHTML = currentStep < 3 ? 
-                `<button onclick="nextStep()" class="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-200 transition-all">המשך לשלב הבא <i data-lucide="chevron-left" class="w-5 h-5"></i></button>` : 
-                `<button onclick="goToStep(0)" class="px-6 py-3 text-blue-600 font-bold hover:underline">להתחלה מחדש</button>`;
-
-            updateProgressBar();
-            lucide.createIcons();
+            document.getElementById('footer-actions').innerHTML = currentStep < 3 ? `<button onclick="nextStep()" class="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-200 transition-all">המשך <i data-lucide="chevron-left" class="w-5 h-5"></i></button>` : `<button onclick="goToStep(0)" class="px-6 py-3 text-blue-600 font-bold hover:underline">התחלה מחדש</button>`;
+            updateProgressBar(); lucide.createIcons();
         }
 
         function updateFormData(key, value) { formData[key] = value; if (currentStep === 3) render(); }
@@ -275,7 +225,6 @@
         function nextStep() { if (currentStep < 3) { currentStep++; render(); } }
         function prevStep() { if (currentStep > 0) { currentStep--; render(); } }
         function goToStep(s) { currentStep = s; render(); }
-
         function updateProgressBar() {
             const line = document.getElementById('progress-line');
             line.style.width = (currentStep / 3) * 100 + "%";
@@ -286,18 +235,16 @@
                 else circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300";
             });
         }
-
         function generateFinalPrompt() {
-            return `היי, אני רוצה לבנות אפליקציית Web שהיא ${formData.appType || "[סוג האפליקציה]"} עבור ${formData.targetAudience || "[קהל היעד]"}. המטרה היא לפתור את הבעיה של ${formData.problem || "[הבעיה]"}.
+            return `היי, אני רוצה לבנות אפליקציית Web שהיא ${formData.appType || "[סוג]"} עבור ${formData.targetAudience || "[קהל]"}. המטרה: ${formData.problem}.
 
-איך זה עובד: ${formData.actions}
+פעולות: ${formData.actions}
 קלט: ${formData.inputs}
 תצוגה: ${formData.outputs}
 
 עיצוב: סגנון ${formData.style}, צבעים: ${formData.colors}, כפתורים: ${formData.buttonStyle}.
-וודא שהעיצוב מתאים למובייל וכתוב הכל בקובץ HTML אחד עם הערות בעברית.`;
+כתוב הכל בקובץ HTML אחד עם הערות בעברית.`;
         }
-
         function copyPrompt() {
             const text = generateFinalPrompt();
             navigator.clipboard.writeText(text).then(() => {
