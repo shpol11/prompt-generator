@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- תגיות מטא להטמעה בקנבה (Open Graph) -->
+    <meta property="og:title" content="מחולל הפרומפט המנצח 🚀">
+    <meta property="og:description" content="כלי עזר לתלמידים ליצירת פרומפטים מדויקים לאפליקציות ואתרים.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shpol11.github.io/prompt-generator/">
+    
     <title>מחולל הפרומפט המנצח 🚀</title>
+    
     <!-- Tailwind CSS לעיצוב מודרני -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons לאייקונים יפים -->
@@ -23,7 +31,6 @@
         .magic-btn:active {
             transform: scale(0.95);
         }
-        /* אנימציית טעינה פשוטה */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -36,7 +43,6 @@
 <body class="min-h-screen text-slate-900">
 
     <div class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
-        <!-- כותרת ראשית -->
         <header class="text-center mb-12 animate-fade">
             <div class="inline-block p-3 bg-blue-100 rounded-2xl mb-4 text-blue-600">
                 <i data-lucide="sparkles" class="w-8 h-8"></i>
@@ -46,18 +52,12 @@
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            
-            <!-- צד ימין: טופס וניווט -->
             <div class="lg:col-span-2 space-y-6">
-                
-                <!-- סרגל התקדמות לחיץ -->
                 <nav class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200 flex justify-between items-center px-4">
                     <div class="flex flex-1 justify-between relative">
-                        <!-- קו מחבר -->
                         <div class="absolute top-6 right-0 left-0 h-1 bg-slate-100 -z-0"></div>
                         <div id="progress-line" class="absolute top-6 right-0 h-1 bg-blue-600 transition-all duration-500 -z-0" style="width: 0%;"></div>
                         
-                        <!-- כפתורי השלבים -->
                         <button onclick="goToStep(0)" class="step-btn z-10 flex flex-col items-center group" data-step="0">
                             <div class="w-12 h-12 rounded-full flex items-center justify-center border-4 bg-blue-600 border-blue-100 text-white shadow-lg transition-all duration-300">1</div>
                             <span class="text-xs mt-2 font-bold text-blue-700 hidden sm:block">סיפור</span>
@@ -77,43 +77,28 @@
                     </div>
                 </nav>
 
-                <!-- כרטיס הטופס המרכזי -->
                 <main class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-slate-200 min-h-[550px] flex flex-col">
-                    <div id="step-header" class="p-6 border-b border-slate-100 bg-slate-50/50 flex items-center gap-4">
-                        <!-- יוזרק פה דינמית -->
-                    </div>
-
-                    <div id="step-content" class="p-8 flex-grow animate-fade">
-                        <!-- יוזרק פה דינמית -->
-                    </div>
-
-                    <!-- כפתורי ניווט בתחתית -->
+                    <div id="step-header" class="p-6 border-b border-slate-100 bg-slate-50/50 flex items-center gap-4"></div>
+                    <div id="step-content" class="p-8 flex-grow animate-fade"></div>
                     <footer class="p-6 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
                         <button id="prev-btn" onclick="prevStep()" class="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-200 transition-all disabled:opacity-30">
                             <i data-lucide="chevron-right" class="w-5 h-5"></i>
                             חזרה
                         </button>
-                        <div id="footer-actions">
-                            <!-- יוזרק פה דינמית -->
-                        </div>
+                        <div id="footer-actions"></div>
                     </footer>
                 </main>
             </div>
 
-            <!-- צד שמאל: טיפים ומידע נוסף -->
             <aside class="space-y-6">
-                <!-- תיבת טיפים -->
                 <div class="bg-amber-50 rounded-[2rem] p-6 border border-amber-100 shadow-sm">
                     <div class="flex items-center gap-2 mb-4 text-amber-700">
                         <i data-lucide="lightbulb" class="w-6 h-6 fill-amber-500"></i>
                         <h3 class="font-bold text-lg">טיפים מהמומחים</h3>
                     </div>
-                    <ul id="tips-list" class="space-y-4 text-sm text-amber-900 leading-relaxed">
-                        <!-- יוזרק פה דינמית -->
-                    </ul>
+                    <ul id="tips-list" class="space-y-4 text-sm text-amber-900 leading-relaxed"></ul>
                 </div>
 
-                <!-- תיבת מה כלול -->
                 <div class="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm">
                     <div class="flex items-center gap-2 mb-4 text-slate-800 font-bold">
                         <i data-lucide="info" class="w-5 h-5 text-blue-500"></i>
@@ -138,24 +123,15 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- הודעת עידוד -->
-                <div class="bg-blue-600 rounded-[2rem] p-6 text-white shadow-lg shadow-blue-200">
-                    <p class="text-xs leading-relaxed opacity-90">
-                        <strong>טיפ זהב:</strong> אם ה-AI לא נתן לכם בדיוק מה שרציתם בניסיון הראשון, אל תתייאשו! פשוט כתבו לו: "שנה את..." או "תוסיף..." והוא יתקן מיד.
-                    </p>
-                </div>
             </aside>
         </div>
     </div>
 
-    <!-- תיבת הודעה (Toast) להעתקה -->
     <div id="toast" class="fixed bottom-8 right-1/2 translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z-50">
         הפרומפט הועתק! עכשיו עברו ל-Gemini והדביקו.
     </div>
 
     <script>
-        // --- נתונים ומצב האפליקציה ---
         let currentStep = 0;
         const formData = {
             appType: '',
@@ -175,15 +151,11 @@
                 subtitle: "מה אנחנו בונים ולמי?",
                 icon: "heart",
                 iconColor: "text-red-500",
-                tips: [
-                    "חשבו על בעיה שמעצבנת אתכם ביום-יום.",
-                    "ככל שתהיו יותר ספציפיים לגבי קהל היעד, התוצאה תהיה טובה יותר.",
-                    "דוגמה: 'יומן שיעורי בית לתלמידים שמאבדים הכל'."
-                ],
+                tips: ["חשבו על בעיה שמעצבנת אתכם ביום-יום.", "ככל שתהיו יותר ספציפיים לגבי קהל היעד, התוצאה תהיה טובה יותר."],
                 fields: [
-                    { key: 'appType', label: 'סוג האפליקציה', placeholder: 'למשל: יומן תזכורות, משחק טריוויה, מחשבון...' },
-                    { key: 'targetAudience', label: 'קהל היעד', placeholder: 'למשל: תלמידי כיתה ז, הורים עסוקים...' },
-                    { key: 'problem', label: 'הבעיה שאתם פותרים', placeholder: 'למשל: אנשים שוכחים להשקות את הצמחים שלהם והם נובלים.' }
+                    { key: 'appType', label: 'סוג האפליקציה', placeholder: 'למשל: יומן תזכורות, משחק טריוויה...' },
+                    { key: 'targetAudience', label: 'קהל היעד', placeholder: 'למשל: תלמידי כיתה ז...' },
+                    { key: 'problem', label: 'הבעיה שאתם פותרים', placeholder: 'למשל: אנשים שוכחים להשקות את הצמחים...' }
                 ]
             },
             {
@@ -191,20 +163,15 @@
                 subtitle: "איך זה אמור לעבוד?",
                 icon: "brain",
                 iconColor: "text-blue-500",
-                tips: [
-                    "תיאור טכני טוב כולל 'קלט' (מה כותבים) ו'פלט' (מה רואים).",
-                    "בקשו מה-AI 'שמירה בדפדפן' (LocalStorage) כדי שהנתונים לא יימחקו.",
-                    "כפתור 'איפוס' (Reset) תמיד עוזר."
-                ],
+                tips: ["תיאור טוב כולל קלט ופלט.", "בקשו שמירה בדפדפן כדי שהנתונים לא יימחקו."],
                 quickFills: [
                     { label: "שמירת נתונים", text: "הוסף שמירה ב-LocalStorage כדי שהמידע יישמר גם אחרי רענון." },
-                    { label: "מצב לילה", text: "הוסף כפתור שמחליף בין עיצוב בהיר לכהה." },
-                    { label: "חיפוש", text: "הוסף תיבת חיפוש מהירה לסינון פריטים." }
+                    { label: "מצב לילה", text: "הוסף כפתור שמחליף בין עיצוב בהיר לכהה." }
                 ],
                 fields: [
-                    { key: 'actions', label: 'מה קורה כשלוחצים על כפתורים?', placeholder: 'למשל: כשלוחצים על השקיתי מופיעה אנימציה של טיפה...' },
-                    { key: 'inputs', label: 'מה המשתמש מקליד/בוחר?', placeholder: 'למשל: שם הצמח, כל כמה ימים להשקות...' },
-                    { key: 'outputs', label: 'מה המשתמש רואה כתוצאה?', placeholder: 'למשל: רשימת פריטים, ניקוד, הודעת עידוד...' }
+                    { key: 'actions', label: 'מה קורה כשלוחצים על כפתורים?', placeholder: 'למשל: כשלוחצים על השקיתי מופיעה אנימציה...' },
+                    { key: 'inputs', label: 'מה המשתמש מקליד/בוחר?', placeholder: 'למשל: שם הצמח...' },
+                    { key: 'outputs', label: 'מה המשתמש רואה כתוצאה?', placeholder: 'למשל: רשימת פריטים...' }
                 ]
             },
             {
@@ -212,17 +179,13 @@
                 subtitle: "איך זה ייראה?",
                 icon: "palette",
                 iconColor: "text-purple-500",
-                tips: [
-                    "צבעים מעבירים רגש: ירוק זה טבעי ומרגיע, כחול זה מקצועי.",
-                    "בקשו 'טיפוגרפיה נקייה' כדי שהטקסט יהיה קריא.",
-                    "עיצוב מינימליסטי הוא תמיד בחירה בטוחה וטובה."
-                ],
+                tips: ["צבעים מעבירים רגש.", "עיצוב מינימליסטי הוא תמיד בחירה טובה."],
                 options: [
-                    { key: 'style', label: 'סגנון עיצוב', choices: ['מודרני', 'מינימליסטי', 'רטרו/פיקסל', 'צבעוני', 'עתידני'] },
-                    { key: 'buttonStyle', label: 'סגנון כפתורים', choices: ['גדולים', 'עגולים', 'תלת-ממדיים', 'עם אנימציה'] }
+                    { key: 'style', label: 'סגנון עיצוב', choices: ['מודרני', 'מינימליסטי', 'רטרו', 'צבעוני'] },
+                    { key: 'buttonStyle', label: 'סגנון כפתורים', choices: ['גדולים', 'עגולים', 'תלת-ממדיים'] }
                 ],
                 fields: [
-                    { key: 'colors', label: 'צבעים מועדפים', placeholder: 'למשל: רקע לבן עם כפתורים בסגול וזהב...' }
+                    { key: 'colors', label: 'צבעים מועדפים', placeholder: 'למשל: רקע לבן עם כפתורים בסגול...' }
                 ]
             },
             {
@@ -230,15 +193,9 @@
                 subtitle: "הכל מוכן! רק להעתיק.",
                 icon: "sparkles",
                 iconColor: "text-yellow-500",
-                tips: [
-                    "העתיקו את הקוד המלא שה-AI ייתן לכם.",
-                    "שמרו את הקוד בקובץ בשם index.html.",
-                    "פתחו את הקובץ בדפדפן וזהו - האפליקציה באוויר!"
-                ]
+                tips: ["העתיקו את הקוד המלא שה-AI ייתן לכם.", "שמרו את הקוד בקובץ בשם index.html."]
             }
         ];
-
-        // --- פונקציות ליבה ---
 
         function initApp() {
             render();
@@ -247,8 +204,6 @@
 
         function render() {
             const data = steps[currentStep];
-            
-            // עדכון כותרת שלב
             document.getElementById('step-header').innerHTML = `
                 <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 ${data.iconColor}">
                     <i data-lucide="${data.icon}" class="w-6 h-6"></i>
@@ -258,8 +213,6 @@
                     <p class="text-slate-500 text-sm">${data.subtitle}</p>
                 </div>
             `;
-
-            // עדכון רשימת טיפים
             document.getElementById('tips-list').innerHTML = data.tips.map(tip => `
                 <li class="flex gap-3 items-start">
                     <div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 shrink-0"></div>
@@ -267,196 +220,92 @@
                 </li>
             `).join('');
 
-            // עדכון תוכן השלב
             const content = document.getElementById('step-content');
             content.classList.remove('animate-fade');
-            void content.offsetWidth; // Trigger reflow
+            void content.offsetWidth;
             content.classList.add('animate-fade');
 
             if (currentStep < 3) {
                 let html = '<div class="space-y-6">';
-                
-                // הוספת Quick Fills (רק בשלב 2)
                 if (data.quickFills) {
-                    html += `
-                        <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 mb-6">
-                            <div class="flex items-center gap-2 mb-3 text-blue-700 font-bold text-sm">
-                                <i data-lucide="wand-2" class="w-4 h-4"></i>
-                                <span>שדרוגי קסם (קליק להוספה):</span>
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                ${data.quickFills.map(f => `
-                                    <button onclick="addQuickFill('${f.text}')" class="bg-white hover:bg-blue-600 hover:text-white text-blue-600 border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-sm">
-                                        + ${f.label}
-                                    </button>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
+                    html += `<div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 mb-6 flex flex-wrap gap-2">
+                        ${data.quickFills.map(f => `<button onclick="addQuickFill('${f.text}')" class="bg-white hover:bg-blue-600 hover:text-white text-blue-600 border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm">+ ${f.label}</button>`).join('')}
+                    </div>`;
                 }
-
-                // הוספת אפשרויות בחירה
                 if (data.options) {
                     data.options.forEach(opt => {
-                        html += `
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-3">${opt.label}</label>
-                                <div class="flex flex-wrap gap-2">
-                                    ${opt.choices.map(choice => `
-                                        <button onclick="updateFormData('${opt.key}', '${choice}')" class="px-5 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${formData[opt.key] === choice ? 'bg-blue-600 text-white border-blue-600 shadow-md' : 'bg-white text-slate-600 border-slate-100 hover:border-blue-200'}">
-                                            ${choice}
-                                        </button>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
+                        html += `<div><label class="block text-sm font-bold text-slate-700 mb-3">${opt.label}</label><div class="flex flex-wrap gap-2">
+                            ${opt.choices.map(choice => `<button onclick="updateFormData('${opt.key}', '${choice}')" class="px-5 py-2.5 rounded-xl text-sm font-medium border-2 ${formData[opt.key] === choice ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-100'}">${choice}</button>`).join('')}
+                        </div></div>`;
                     });
                 }
-
-                // הוספת שדות טקסט
                 data.fields.forEach(f => {
-                    html += `
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">${f.label}</label>
-                            <textarea oninput="updateFormData('${f.key}', this.value)" rows="${f.key === 'problem' ? 3 : 2}" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all text-slate-800 placeholder:text-slate-400" placeholder="${f.placeholder}">${formData[f.key]}</textarea>
-                        </div>
-                    `;
+                    html += `<div><label class="block text-sm font-bold text-slate-700 mb-2">${f.label}</label>
+                    <textarea oninput="updateFormData('${f.key}', this.value)" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-800" placeholder="${f.placeholder}">${formData[f.key]}</textarea></div>`;
                 });
                 html += '</div>';
                 content.innerHTML = html;
             } else {
-                // שלב הסיום - תצוגת הפרומפט
                 content.innerHTML = `
                     <div class="space-y-6">
                         <div class="bg-green-50 border border-green-100 p-5 rounded-2xl flex gap-4 items-start shadow-sm">
-                            <i data-lucide="check-circle-2" class="w-8 h-8 text-green-600 shrink-0"></i>
-                            <div>
-                                <h4 class="font-bold text-green-900">הנחיה מוכנה!</h4>
-                                <p class="text-sm text-green-800">העתיקו את הטקסט למטה והדביקו אותו בצ'אט של Gemini.</p>
-                            </div>
+                            <i data-lucide="check-circle-2" class="w-8 h-8 text-green-600"></i>
+                            <div><h4 class="font-bold text-green-900">הנחיה מוכנה!</h4><p class="text-sm text-green-800">העתיקו את הטקסט למטה והדביקו אותו בצ'אט של Gemini.</p></div>
                         </div>
                         <div class="relative group">
-                            <div class="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full z-10">הפרומפט שלך</div>
-                            <div id="final-prompt" class="w-full h-80 p-6 bg-slate-900 text-slate-300 rounded-3xl font-mono text-sm overflow-auto whitespace-pre-wrap leading-relaxed border-4 border-slate-800 shadow-2xl scrollbar-hide">
-${generateFinalPrompt()}</div>
-                            <button onclick="copyPrompt()" class="absolute bottom-6 left-6 flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all">
-                                <i data-lucide="copy" class="w-5 h-5"></i>
-                                העתק והתחל לבנות
+                            <div id="final-prompt" class="w-full h-80 p-6 bg-slate-900 text-slate-300 rounded-3xl font-mono text-sm overflow-auto whitespace-pre-wrap leading-relaxed border-4 border-slate-800 shadow-2xl scrollbar-hide">${generateFinalPrompt()}</div>
+                            <button onclick="copyPrompt()" class="absolute bottom-6 left-6 flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl hover:bg-blue-700 transition-all">
+                                <i data-lucide="copy" class="w-5 h-5"></i> העתק והתחל לבנות
                             </button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             }
 
-            // עדכון כפתורי פוטר
             document.getElementById('prev-btn').disabled = currentStep === 0;
             document.getElementById('footer-actions').innerHTML = currentStep < 3 ? 
-                `<button onclick="nextStep()" class="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-95">
-                    המשך לשלב הבא
-                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                </button>` : 
+                `<button onclick="nextStep()" class="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-200 transition-all">המשך לשלב הבא <i data-lucide="chevron-left" class="w-5 h-5"></i></button>` : 
                 `<button onclick="goToStep(0)" class="px-6 py-3 text-blue-600 font-bold hover:underline">להתחלה מחדש</button>`;
 
-            // עדכון סרגל התקדמות
             updateProgressBar();
             lucide.createIcons();
         }
 
-        function updateFormData(key, value) {
-            formData[key] = value;
-            if (currentStep < 3) {
-                // No re-render for text inputs to avoid losing focus
-            } else {
-                render();
-            }
-        }
-
-        function addQuickFill(text) {
-            formData.actions += (formData.actions ? " " : "") + text;
-            render();
-        }
-
-        function nextStep() {
-            if (currentStep < 3) {
-                currentStep++;
-                render();
-            }
-        }
-
-        function prevStep() {
-            if (currentStep > 0) {
-                currentStep--;
-                render();
-            }
-        }
-
-        function goToStep(s) {
-            currentStep = s;
-            render();
-        }
+        function updateFormData(key, value) { formData[key] = value; if (currentStep === 3) render(); }
+        function addQuickFill(text) { formData.actions += (formData.actions ? " " : "") + text; render(); }
+        function nextStep() { if (currentStep < 3) { currentStep++; render(); } }
+        function prevStep() { if (currentStep > 0) { currentStep--; render(); } }
+        function goToStep(s) { currentStep = s; render(); }
 
         function updateProgressBar() {
             const line = document.getElementById('progress-line');
-            const percentage = (currentStep / 3) * 100;
-            line.style.width = percentage + "%";
-
+            line.style.width = (currentStep / 3) * 100 + "%";
             document.querySelectorAll('.step-btn').forEach((btn, idx) => {
                 const circle = btn.querySelector('div');
-                const label = btn.querySelector('span');
-                
-                if (idx < currentStep) {
-                    circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-green-500 border-green-100 text-white transition-all duration-300";
-                    circle.innerHTML = '<i data-lucide="check" class="w-6 h-6"></i>';
-                    label.className = "text-xs mt-2 text-green-600 hidden sm:block";
-                } else if (idx === currentStep) {
-                    circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-blue-600 border-blue-100 text-white shadow-lg scale-110 transition-all duration-300";
-                    circle.innerHTML = idx + 1;
-                    label.className = "text-xs mt-2 font-bold text-blue-700 hidden sm:block";
-                } else {
-                    circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300 transition-all duration-300";
-                    circle.innerHTML = idx + 1;
-                    label.className = "text-xs mt-2 text-slate-400 hidden sm:block";
-                }
+                if (idx < currentStep) circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-green-500 border-green-100 text-white";
+                else if (idx === currentStep) circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-blue-600 border-blue-100 text-white shadow-lg scale-110";
+                else circle.className = "w-12 h-12 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300";
             });
         }
 
         function generateFinalPrompt() {
-            return `היי, אני רוצה לבנות אפליקציית Web שהיא ${formData.appType || "[סוג האפליקציה]"} עבור ${formData.targetAudience || "[קהל היעד]"}. המטרה היא לפתור את הבעיה של ${formData.problem || "[הבעיה שמצאתם]"}.
+            return `היי, אני רוצה לבנות אפליקציית Web שהיא ${formData.appType || "[סוג האפליקציה]"} עבור ${formData.targetAudience || "[קהל היעד]"}. המטרה היא לפתור את הבעיה של ${formData.problem || "[הבעיה]"}.
 
-איך זה עובד (לוגיקה):
-- כפתורים ופעולות: ${formData.actions || "תיאור פעולות"}
-- קלט מהמשתמש: ${formData.inputs || "תיבת טקסט למידע"}
-- תוצאה מוצגת: ${formData.outputs || "מה המשתמש רואה בסוף"}
+איך זה עובד: ${formData.actions}
+קלט: ${formData.inputs}
+תצוגה: ${formData.outputs}
 
-וייב ועיצוב:
-- סגנון: ${formData.style}
-- צבעים: ${formData.colors || "בחירת צבעים חופשית"}
-- כפתורים: ${formData.buttonStyle}
-- דגש חשוב: וודא שהעיצוב רספונסיבי (מתאים למובייל) ונגיש.
-
-הגדרות טכניות:
-כתוב את כל הקוד בקובץ HTML אחד בלבד שכולל בתוכו את ה-CSS וה-JavaScript. הוסף הערות הסבר בעברית בתוך הקוד כדי שאבין מה כל חלק עושה. אל תשתמש בספריות חיצוניות מורכבות. אני רוצה קוד מלא שאפשר להעתיק בבת אחת ולהריץ מיד.`;
+עיצוב: סגנון ${formData.style}, צבעים: ${formData.colors}, כפתורים: ${formData.buttonStyle}.
+וודא שהעיצוב מתאים למובייל וכתוב הכל בקובץ HTML אחד עם הערות בעברית.`;
         }
 
         function copyPrompt() {
             const text = generateFinalPrompt();
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-
-            const toast = document.getElementById('toast');
-            toast.style.opacity = '1';
-            toast.style.transform = 'translate(-50%, 0)';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translate(-50%, 1rem)';
-            }, 3000);
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.style.opacity = '1'; toast.style.transform = 'translate(-50%, 0)';
+                setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translate(-50%, 1rem)'; }, 3000);
+            });
         }
-
-        // הפעלה ראשונית
         window.onload = initApp;
     </script>
 </body>
