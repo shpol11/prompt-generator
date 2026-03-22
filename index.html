@@ -4,27 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- תגיות מטא לזיהוי ככלי אינטראקטיבי בקנבה -->
-    <title>מחולל הפרומפט המנצח 🚀</title>
-    <meta name="description" content="אפליקציה אינטראקטיבית ליצירת פרומפטים">
-    
-    <link rel="canonical" href="https://shpol11.github.io/prompt-generator/" />
-    
-    <!-- Open Graph המיועד להטמעה חיה -->
-    <meta property="og:site_name" content="מחולל הפרומפט המנצח">
+    <!-- תגיות מטא להטמעה אופטימלית בקנבה -->
     <meta property="og:title" content="מחולל הפרומפט המנצח 🚀">
-    <meta property="og:description" content="התחילו ליצור את האפליקציה שלכם כאן">
+    <meta property="og:description" content="כלי אינטראקטיבי לבני נוער ליצירת פרומפטים מדויקים לבניית אפליקציות ואתרים.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shpol11.github.io/prompt-generator/">
     
-    <!-- הגדרות תצוגה לאייפראם -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Tailwind CSS -->
+    <title>מחולל הפרומפט המנצח 🚀</title>
+    
+    <!-- Tailwind CSS לעיצוב מודרני ומהיר -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
+    <!-- Lucide Icons לאייקונים ויזואליים -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -34,185 +25,469 @@
             margin: 0;
             padding: 0;
         }
-        .step-transition { transition: all 0.3s ease-in-out; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .step-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .step-content.active {
+            display: block;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .route-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        /* התאמות למובייל וקנבה */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
     </style>
 </head>
-<body class="min-h-screen text-slate-900">
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6">
 
-    <div class="max-w-6xl mx-auto px-4 py-6 sm:py-10">
-        <header class="text-center mb-8 animate-fade">
-            <div class="inline-block p-3 bg-blue-100 rounded-2xl mb-4 text-blue-600">
-                <i data-lucide="sparkles" class="w-8 h-8"></i>
+    <div class="w-full max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <div class="inline-flex p-3 bg-blue-600 rounded-2xl text-white shadow-lg mb-3">
+                <i data-lucide="sparkles" class="w-6 h-6"></i>
             </div>
-            <h1 class="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">המדריך לבניית האפליקציה שלך</h1>
-            <p class="text-slate-600">הפכו רעיון לפרומפט מושלם עבור בינה מלאכותית</p>
+            <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">מחולל הפרומפט המנצח</h1>
+            <p class="text-slate-500 text-sm font-medium">הופכים רעיון לפרומפט שבינה מלאכותית מבינה בשנייה</p>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-            <div class="lg:col-span-2 space-y-6">
-                <!-- סרגל התקדמות -->
-                <nav class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200 flex justify-between items-center px-4">
-                    <div class="flex flex-1 justify-between relative">
-                        <div class="absolute top-6 right-0 left-0 h-1 bg-slate-100 -z-0"></div>
-                        <div id="progress-line" class="absolute top-6 right-0 h-1 bg-blue-600 transition-all duration-500 -z-0" style="width: 0%;"></div>
-                        
-                        <button onclick="goToStep(0)" class="step-btn z-10 flex flex-col items-center group" data-step="0">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center border-4 bg-blue-600 border-blue-100 text-white shadow-lg transition-all duration-300">1</div>
-                        </button>
-                        <button onclick="goToStep(1)" class="step-btn z-10 flex flex-col items-center group" data-step="1">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300 transition-all duration-300">2</div>
-                        </button>
-                        <button onclick="goToStep(2)" class="step-btn z-10 flex flex-col items-center group" data-step="2">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300 transition-all duration-300">3</div>
-                        </button>
-                        <button onclick="goToStep(3)" class="step-btn z-10 flex flex-col items-center group" data-step="3">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300 transition-all duration-300">4</div>
-                        </button>
-                    </div>
-                </nav>
+        <!-- Progress Steps -->
+        <div id="progress-container" class="mb-8 px-4 flex justify-between relative max-w-md mx-auto">
+            <div class="absolute top-5 left-4 right-4 h-1 bg-slate-200 -z-10 rounded-full"></div>
+            <div id="progress-bar" class="absolute top-5 right-4 h-1 bg-blue-500 -z-10 rounded-full transition-all duration-500" style="width: 0%"></div>
+            
+            <button onclick="goToStep(0)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-blue-600 text-white border-4 border-white shadow-md transition-all font-bold" data-step="0">1</button>
+            <button onclick="goToStep(1)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="1">2</button>
+            <button onclick="goToStep(2)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="2">3</button>
+            <button onclick="goToStep(3)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="3">4</button>
+            <button onclick="goToStep(4)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="4">5</button>
+        </div>
 
-                <main class="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-200 min-h-[480px] flex flex-col">
-                    <div id="step-header" class="p-5 border-b border-slate-100 bg-slate-50/50 flex items-center gap-4"></div>
-                    <div id="step-content" class="p-6 flex-grow animate-fade"></div>
-                    <footer class="p-5 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
-                        <button id="prev-btn" onclick="prevStep()" class="flex items-center gap-2 px-5 py-2 rounded-xl font-bold text-slate-600 hover:bg-slate-200 transition-all disabled:opacity-30">
-                            <i data-lucide="chevron-right" class="w-5 h-5"></i> חזרה
-                        </button>
-                        <div id="footer-actions"></div>
-                    </footer>
-                </main>
+        <!-- Main Card -->
+        <main class="glass-card rounded-[2.5rem] shadow-2xl border border-white overflow-hidden flex flex-col min-h-[500px]">
+            <!-- Step Header -->
+            <div class="bg-slate-50/50 p-6 border-b border-slate-100 flex items-center gap-4">
+                <div id="step-icon-box" class="p-3 bg-white rounded-xl shadow-sm text-blue-600">
+                    <i id="step-icon" data-lucide="map"></i>
+                </div>
+                <div>
+                    <h2 id="step-title" class="text-xl font-bold text-slate-800">בחירת מסלול</h2>
+                    <p id="step-subtitle" class="text-slate-500 text-xs">מה נבנה היום?</p>
+                </div>
             </div>
 
-            <aside class="space-y-6">
-                <div class="bg-amber-50 rounded-[2rem] p-6 border border-amber-100 shadow-sm">
-                    <div class="flex items-center gap-2 mb-4 text-amber-700">
-                        <i data-lucide="lightbulb" class="w-6 h-6 fill-amber-500"></i>
-                        <h3 class="font-bold">טיפים</h3>
+            <!-- Scrollable Content -->
+            <div id="content-area" class="p-6 sm:p-8 flex-grow overflow-y-auto custom-scrollbar">
+                
+                <!-- Step 0: Route Selection -->
+                <div id="step-0" class="step-content active">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
+                        <button onclick="selectRoute('app')" id="btn-route-app" class="route-card group p-6 rounded-3xl border-4 transition-all flex flex-col items-center gap-4 text-center bg-white border-slate-100 hover:border-blue-200">
+                            <div class="p-4 bg-blue-100 rounded-2xl text-blue-600 group-hover:scale-110 transition-transform">
+                                <i data-lucide="smartphone" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">אפליקציה לפתרון אתגר</h3>
+                            <p class="text-xs text-slate-500">בניית כלי טכני שעוזר לאנשים לפתור בעיה</p>
+                        </button>
+                        <button onclick="selectRoute('site')" id="btn-route-site" class="route-card group p-6 rounded-3xl border-4 transition-all flex flex-col items-center gap-4 text-center bg-white border-slate-100 hover:border-purple-200">
+                            <div class="p-4 bg-purple-100 rounded-2xl text-purple-600 group-hover:scale-110 transition-transform">
+                                <i data-lucide="layout" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">אתר להצגת מוצר</h3>
+                            <p class="text-xs text-slate-500">דף נחיתה תדמיתי שמציג המצאה או שירות</p>
+                        </button>
                     </div>
-                    <ul id="tips-list" class="space-y-3 text-sm text-amber-900 leading-relaxed"></ul>
                 </div>
-                <div class="bg-blue-600 rounded-[2rem] p-5 text-white shadow-lg">
-                    <p class="text-xs opacity-90 font-bold italic">"ה-AI הוא העוזר שלכם. תהיו ספציפיים!"</p>
+
+                <!-- Step 1: Story & Goal -->
+                <div id="step-1" class="step-content space-y-6">
+                    <div>
+                        <label id="label-name" class="block text-sm font-bold text-slate-700 mb-2">שם הפרויקט</label>
+                        <input type="text" id="input-name" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="איך תקראו לזה?">
+                    </div>
+                    <div>
+                        <label id="label-audience" class="block text-sm font-bold text-slate-700 mb-2">קהל היעד</label>
+                        <input type="text" id="input-audience" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="למי זה מיועד?">
+                    </div>
+                    <div>
+                        <label id="label-problem" class="block text-sm font-bold text-slate-700 mb-2">מה המטרה?</label>
+                        <textarea id="input-problem" oninput="updateData()" rows="3" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="מה הבעיה שזה פותר או מה הערך המרכזי?"></textarea>
+                    </div>
                 </div>
-            </aside>
-        </div>
+
+                <!-- Step 2: Logic & Content -->
+                <div id="step-2" class="step-content space-y-6">
+                    <div>
+                        <label id="label-logic" class="block text-sm font-bold text-slate-700 mb-2">איך זה עובד?</label>
+                        <textarea id="input-logic" oninput="updateData()" rows="4" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="תארו את פעולות הכפתורים או את מבנה דף האינטרנט..."></textarea>
+                    </div>
+                    <div>
+                        <label id="label-inputs" class="block text-sm font-bold text-slate-700 mb-2">מה עוד חשוב לכלול?</label>
+                        <input type="text" id="input-inputs" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="קלטים, גלריה, טפסים...">
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100">
+                        <label class="text-xs font-bold text-blue-700 mb-2 block flex items-center gap-2">
+                            <i data-lucide="zap" class="w-4 h-4"></i> שדרוגים מהירים (קליק להוספה):
+                        </label>
+                        <div id="upgrade-buttons" class="flex flex-wrap gap-2">
+                            <!-- Buttons injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Guidance Tips for Students -->
+                    <div id="step-2-tips" class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-slate-800 text-xs leading-relaxed mt-6">
+                        <div class="flex items-center gap-2 mb-3 font-bold text-slate-700">
+                            <i data-lucide="help-circle" class="w-4 h-4"></i>
+                            <span class="text-sm">צריכים עזרה בתיאור המערכת?</span>
+                        </div>
+                        <ul id="logic-tips-list" class="space-y-2 opacity-90">
+                            <!-- Injected by JS based on route -->
+                        </ul>
+                        
+                        <div class="mt-4 pt-4 border-t border-slate-200">
+                            <div class="flex items-center gap-2 mb-2 font-bold text-blue-700">
+                                <i data-lucide="command" class="w-3 h-3"></i>
+                                <span>מושגים שחשוב להכיר:</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-[10px]">
+                                <span title="חוויית משתמש"><strong class="text-slate-900">UX:</strong> איך המשתמש מרגיש כשהוא גולש.</span>
+                                <span title="ממשק משתמש"><strong class="text-slate-900">UI:</strong> איך האתר נראה (צבעים, כפתורים).</span>
+                                <span title="התאמה למובייל"><strong class="text-slate-900">Responsiveness:</strong> התאמה לכל מכשיר.</span>
+                                <span title="קריאה לפעולה"><strong class="text-slate-900">CTA:</strong> כפתור שמניע את המשתמש לפעול.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Vibe & Style -->
+                <div id="step-3" class="step-content space-y-8">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-4">בחר סגנון עיצובי</label>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <button onclick="selectStyle('מודרני')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="מודרני">מודרני</button>
+                            <button onclick="selectStyle('רטרו')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="רטרו">רטרו</button>
+                            <button onclick="selectStyle('נקי')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="נקי">נקי</button>
+                            <button onclick="selectStyle('כהה')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="כהה">כהה (Dark)</button>
+                        </div>
+                        
+                        <!-- Free Text Style Box -->
+                        <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
+                            <label class="block text-xs font-bold text-blue-800 mb-2 flex items-center gap-2">
+                                <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                או תארו את הסגנון שלכם במילים שלכם:
+                            </label>
+                            <textarea id="input-custom-style" oninput="updateData()" rows="2" class="w-full p-3 bg-white border border-blue-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-400 text-sm text-slate-800" placeholder="למשל: סגנון של חלל חיצון, מראה של עיתון ישן, אווירה של טבע וצמחים..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">צבעים מועדפים</label>
+                        <input type="text" id="input-colors" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="למשל: סגול וזהב, כחול וכתום...">
+                    </div>
+                </div>
+
+                <!-- Step 4: Result -->
+                <div id="step-4" class="step-content space-y-6">
+                    <div class="bg-green-50 p-5 rounded-3xl border border-green-100 flex items-start gap-4">
+                        <i data-lucide="check-circle" class="text-green-600 w-6 h-6 shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-green-900">הפרומפט המנצח מוכן!</h4>
+                            <p class="text-xs text-green-700">העתיקו את הטקסט למטה והדביקו אותו בצ'אט של ה-AI.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="w-full h-64 p-5 bg-slate-900 text-slate-300 rounded-3xl font-mono text-xs overflow-auto leading-relaxed border-4 border-slate-800 custom-scrollbar whitespace-pre-wrap select-all" id="prompt-output">
+                            <!-- Generated Prompt Here -->
+                        </div>
+                        <button onclick="copyToClipboard()" class="absolute bottom-4 left-4 bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold shadow-xl hover:bg-blue-700 active:scale-95 transition-all flex items-center gap-2">
+                            <i data-lucide="copy" class="w-4 h-4"></i> העתק פרומפט
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="p-6 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
+                <button id="btn-back" onclick="prevStep()" class="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-200 transition-all disabled:opacity-20 disabled:pointer-events-none">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i> חזרה
+                </button>
+                <button id="btn-next" onclick="nextStep()" class="flex items-center gap-2 px-10 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-100 transition-all active:scale-95">
+                    המשך <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+            </footer>
+        </main>
     </div>
 
-    <div id="toast" class="fixed bottom-8 right-1/2 translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50">
-        הפרומפט הועתק!
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-8 py-4 rounded-3xl shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-50 flex items-center gap-3 translate-y-4">
+        <i data-lucide="check-circle" class="text-green-400"></i>
+        <span class="font-bold">הועתק! עכשיו מדביקים ב-Gemini.</span>
     </div>
 
     <script>
-        let currentStep = 0;
-        const formData = { appType: '', targetAudience: '', problem: '', actions: '', inputs: '', outputs: '', style: 'מודרני', colors: '', buttonStyle: 'עגולים' };
+        // --- State ---
+        let step = 0;
+        let route = null; // 'app' or 'site'
+        const data = {
+            name: '',
+            audience: '',
+            problem: '',
+            logic: '',
+            inputs: '',
+            style: 'מודרני',
+            customStyle: '',
+            colors: ''
+        };
 
-        const steps = [
-            {
-                title: "הלב של האפליקציה",
-                subtitle: "מה אנחנו בונים ולמי?",
-                icon: "heart", iconColor: "text-red-500",
-                tips: ["חשבו על בעיה שמעצבנת אתכם.", "קהל יעד מדויק עוזר ל-AI."],
-                fields: [
-                    { key: 'appType', label: 'סוג האפליקציה', placeholder: 'למשל: יומן תזכורות...' },
-                    { key: 'targetAudience', label: 'קהל היעד', placeholder: 'למשל: תלמידי כיתה ז...' },
-                    { key: 'problem', label: 'הבעיה שאתם פותרים', placeholder: 'למשל: שכחה של השקיית צמחים...' }
-                ]
-            },
-            {
-                title: "המוח והלוגיקה",
-                subtitle: "איך זה עובד?",
-                icon: "brain", iconColor: "text-blue-500",
-                tips: ["ציינו מה המשתמש מקליד.", "בקשו שמירה בדפדפן."],
-                quickFills: [{ label: "שמירת נתונים", text: "הוסף שמירה ב-LocalStorage." }, { label: "מצב לילה", text: "הוסף כפתור מצב לילה." }],
-                fields: [
-                    { key: 'actions', label: 'פעולות כפתורים', placeholder: 'מה קורה כשלוחצים?' },
-                    { key: 'inputs', label: 'קלט משתמש', placeholder: 'מה מקלידים?' },
-                    { key: 'outputs', label: 'תצוגה', placeholder: 'מה רואים בסוף?' }
-                ]
-            },
-            {
-                title: "הסטייל והווייב",
-                subtitle: "איך זה ייראה?",
-                icon: "palette", iconColor: "text-purple-500",
-                tips: ["ירוק זה טבעי.", "עיצוב נקי זה תמיד טוב."],
-                options: [
-                    { key: 'style', label: 'סגנון', choices: ['מודרני', 'מינימליסטי', 'רטרו', 'צבעוני'] },
-                    { key: 'buttonStyle', label: 'כפתורים', choices: ['גדולים', 'עגולים', 'תלת-ממדיים'] }
-                ],
-                fields: [{ key: 'colors', label: 'צבעים', placeholder: 'למשל: כחול ולבן...' }]
-            },
-            {
-                title: "הפרומפט המנצח",
-                subtitle: "הכל מוכן!",
-                icon: "sparkles", iconColor: "text-yellow-500",
-                tips: ["העתיקו הכל ל-Gemini.", "שמרו כ-index.html."]
-            }
+        const stepConfig = [
+            { title: "בחירת מסלול", subtitle: "מה נבנה היום?", icon: "map" },
+            { title: "הסיפור והמטרה", subtitle: "הלב של הפרויקט שלכם", icon: "heart" },
+            { title: "איך זה עובד?", subtitle: "המוח והתוכן של הדף", icon: "brain" },
+            { title: "הווייב והעיצוב", subtitle: "הסטייל והנראות", icon: "palette" },
+            { title: "הפרומפט הסופי", subtitle: "מוכן להעתקה ל-AI", icon: "sparkles" }
         ];
 
-        function initApp() { render(); lucide.createIcons(); }
+        const upgrades = {
+            app: [
+                { label: "מערכת ניקוד ושיאים", text: "הוסף מערכת ניקוד (Score) ושיא אישי (High Score) כדי להפוך את האפליקציה למשחקית ומהנה." },
+                { label: "מדריך למשתמש חדש", text: "הוסף הסבר קצר (Tutorial) שמופיע בטעינה הראשונה ומסביר איך להשתמש באפליקציה." },
+                { label: "כפתור שיתוף תוצאה", text: "הוסף אפשרות להעתיק קישור או לשתף את ההישגים מהאפליקציה עם חברים." },
+                { label: "מצב לילה", text: "הוסף כפתור שמחליף בין עיצוב בהיר לכהה למראה מקצועי יותר." }
+            ],
+            site: [
+                { label: "גלריית תמונות אינטראקטיבית", text: "הוסף גלריית תמונות שניתן לדפדף בה כדי להציג את המוצר מזוויות שונות." },
+                { label: "ציר זמן של הפרויקט", text: "הוסף אזור שמראה את התפתחות הרעיון - מהדגם הראשון ועד למוצר הסופי." },
+                { label: "שאלות ותשובות (FAQ)", text: "הוסף אזור שעונה על שאלות נפוצות שהתלמידים או המורים עשויים לשאול לגבי ההמצאה." },
+                { label: "אנימציות גלילה", text: "הוסף אפקטים של הופעה (Fade In) כשגוללים מטה כדי שהאתר ייראה מודרני ומושקע." }
+            ]
+        };
 
-        function render() {
-            const data = steps[currentStep];
-            document.getElementById('step-header').innerHTML = `<div class="p-3 bg-white rounded-xl border border-slate-100 ${data.iconColor}"><i data-lucide="${data.icon}" class="w-6 h-6"></i></div><div><h2 class="text-xl font-bold text-slate-800">${data.title}</h2><p class="text-slate-500 text-xs">${data.subtitle}</p></div>`;
-            document.getElementById('tips-list').innerHTML = data.tips.map(tip => `<li class="flex gap-2 items-start"><div class="w-1 h-1 bg-amber-400 rounded-full mt-2 shrink-0"></div><span>${tip}</span></li>`).join('');
+        const logicTips = {
+            app: [
+                "<strong>ניווט:</strong> איך המשתמש עובר בין מסכים? (למשל: תפריט צדדי או כפתורי 'המשך').",
+                "<strong>משוב מיידי:</strong> מה קורה כשהפעולה מצליחה? (למשל: צליל חיובי או אנימציה של טיפת מים).",
+                "<strong>ניהול נתונים:</strong> האם המידע צריך להישמר לביקור הבא? ציינו זאת.",
+                "<strong>טיפול בשגיאות:</strong> מה קורה אם המשתמש שכח למלא שדה? (הודעת אזהרה אדומה).",
+                "<strong>דוגמה לניסוח:</strong> 'כשלוחצים על הוספה, נוצר כרטיס חדש ברשימה והשדה מתנקה'."
+            ],
+            site: [
+                "<strong>היררכיה ויזואלית:</strong> מה הדבר הראשון שהמשתמש רואה? (כותרת גדולה מושכת ותמונה מרשימה).",
+                "<strong>קריאה לפעולה (CTA):</strong> מה הפעולה הכי חשובה באתר? (למשל: 'הזמינו עכשיו' או 'צרו קשר').",
+                "<strong>תוכן אינטראקטיבי:</strong> האם יש גלריית תמונות שניתן לדפדף בה?",
+                "<strong>מהירות טעינה:</strong> בקשו שהאתר יהיה קל ומהיר, ללא קבצים כבדים.",
+                "<strong>דוגמה לניסוח:</strong> 'האתר מחולק ל-3 חלקים: הסבר על המוצר, גלריית תמונות, וטופס השארת פרטים בתחתית'."
+            ]
+        };
 
-            const content = document.getElementById('step-content');
-            content.classList.remove('animate-fade'); void content.offsetWidth; content.classList.add('animate-fade');
+        // --- Logic ---
 
-            if (currentStep < 3) {
-                let html = '<div class="space-y-4">';
-                if (data.quickFills) html += `<div class="flex flex-wrap gap-2">${data.quickFills.map(f => `<button onclick="addQuickFill('${f.text}')" class="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-xs font-bold border border-blue-100">+ ${f.label}</button>`).join('')}</div>`;
-                if (data.options) data.options.forEach(opt => {
-                    html += `<div><label class="block text-xs font-bold text-slate-600 mb-2">${opt.label}</label><div class="flex flex-wrap gap-2">
-                        ${opt.choices.map(choice => `<button onclick="updateFormData('${opt.key}', '${choice}')" class="px-3 py-1.5 rounded-lg text-xs border ${formData[opt.key] === choice ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-500 border-slate-100'}">${choice}</button>`).join('')}
-                    </div></div>`;
-                });
-                data.fields.forEach(f => { html += `<div><label class="block text-xs font-bold text-slate-600 mb-1">${f.label}</label><textarea oninput="updateFormData('${f.key}', this.value)" rows="2" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none text-sm text-slate-800" placeholder="${f.placeholder}">${formData[f.key]}</textarea></div>`; });
-                content.innerHTML = html + '</div>';
+        function init() {
+            lucide.createIcons();
+            updateUI();
+        }
+
+        function selectRoute(r) {
+            route = r;
+            // Update labels based on route
+            const lName = document.getElementById('label-name');
+            const lAudience = document.getElementById('label-audience');
+            const lProblem = document.getElementById('label-problem');
+            const lLogic = document.getElementById('label-logic');
+            const lInputs = document.getElementById('label-inputs');
+
+            if (route === 'app') {
+                lName.innerText = "סוג האפליקציה";
+                lAudience.innerText = "קהל היעד";
+                lProblem.innerText = "הבעיה שהיא פותרת";
+                lLogic.innerText = "איך האפליקציה עובדת? (לוגיקה)";
+                lInputs.innerText = "מה המשתמש מקליד?";
+                document.getElementById('btn-route-app').classList.add('border-blue-500', 'bg-blue-50');
+                document.getElementById('btn-route-site').classList.remove('border-purple-500', 'bg-purple-50');
             } else {
-                content.innerHTML = `<div class="space-y-4"><div class="bg-green-50 p-4 rounded-xl flex gap-3"><i data-lucide="check-circle" class="text-green-600"></i><p class="text-sm text-green-800">הפרומפט מוכן! העתיקו אותו ל-Gemini.</p></div><div class="relative"><div id="final-prompt" class="w-full h-64 p-4 bg-slate-900 text-slate-300 rounded-2xl font-mono text-xs overflow-auto leading-relaxed border-4 border-slate-800">${generateFinalPrompt()}</div><button onclick="copyPrompt()" class="absolute bottom-4 left-4 bg-blue-600 text-white px-6 py-2 rounded-xl font-bold shadow-lg text-sm hover:bg-blue-700 transition-all">העתק</button></div></div>`;
+                lName.innerText = "שם המוצר/המותג";
+                lAudience.innerText = "למה המוצר נועד?";
+                lProblem.innerText = "הערך המרכזי (למה זה טוב?)";
+                lLogic.innerText = "מבנה דף האתר הרצוי";
+                lInputs.innerText = "מה מופיע בגלריה או בתוכן?";
+                document.getElementById('btn-route-site').classList.add('border-purple-500', 'bg-purple-50');
+                document.getElementById('btn-route-app').classList.remove('border-blue-500', 'bg-blue-50');
             }
 
-            document.getElementById('prev-btn').disabled = currentStep === 0;
-            document.getElementById('footer-actions').innerHTML = currentStep < 3 ? `<button onclick="nextStep()" class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold shadow-lg transition-all text-sm">המשך</button>` : `<button onclick="goToStep(0)" class="text-blue-600 font-bold text-sm">התחלה מחדש</button>`;
-            updateProgressBar(); lucide.createIcons();
+            // Update logic tips
+            const tipsList = document.getElementById('logic-tips-list');
+            tipsList.innerHTML = logicTips[route].map(tip => `<li>${tip}</li>`).join('');
+
+            // Update upgrade buttons
+            const upgradeBox = document.getElementById('upgrade-buttons');
+            upgradeBox.innerHTML = upgrades[route].map(u => `
+                <button onclick="addUpgrade('${u.text}')" class="bg-white border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-bold text-blue-600 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                    + ${u.label}
+                </button>
+            `).join('');
+
+            nextStep();
         }
 
-        function updateFormData(key, value) { formData[key] = value; if (currentStep === 3) render(); }
-        function addQuickFill(text) { formData.actions += (formData.actions ? " " : "") + text; render(); }
-        function nextStep() { if (currentStep < 3) { currentStep++; render(); } }
-        function prevStep() { if (currentStep > 0) { currentStep--; render(); } }
-        function goToStep(s) { currentStep = s; render(); }
-        function updateProgressBar() {
-            const line = document.getElementById('progress-line'); line.style.width = (currentStep / 3) * 100 + "%";
-            document.querySelectorAll('.step-btn div').forEach((circle, idx) => {
-                if (idx < currentStep) circle.className = "w-10 h-10 rounded-full flex items-center justify-center border-4 bg-green-500 border-green-100 text-white";
-                else if (idx === currentStep) circle.className = "w-10 h-10 rounded-full flex items-center justify-center border-4 bg-blue-600 border-blue-100 text-white shadow-lg scale-110";
-                else circle.className = "w-10 h-10 rounded-full flex items-center justify-center border-4 bg-white border-slate-100 text-slate-300";
+        function addUpgrade(text) {
+            const input = document.getElementById('input-logic');
+            if (!data.logic.includes(text)) {
+                data.logic += (data.logic ? " " : "") + text;
+                input.value = data.logic;
+            }
+        }
+
+        function selectStyle(s) {
+            data.style = s;
+            document.querySelectorAll('.style-btn').forEach(btn => {
+                if (btn.getAttribute('data-val') === s) {
+                    btn.classList.add('bg-blue-600', 'border-blue-600', 'text-white', 'shadow-lg');
+                    btn.classList.remove('bg-white', 'text-slate-600');
+                } else {
+                    btn.classList.remove('bg-blue-600', 'border-blue-600', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-white', 'text-slate-600');
+                }
             });
         }
+
+        function updateData() {
+            data.name = document.getElementById('input-name').value;
+            data.audience = document.getElementById('input-audience').value;
+            data.problem = document.getElementById('input-problem').value;
+            data.logic = document.getElementById('input-logic').value;
+            data.inputs = document.getElementById('input-inputs').value;
+            data.colors = document.getElementById('input-colors').value;
+            data.customStyle = document.getElementById('input-custom-style').value;
+        }
+
+        function nextStep() {
+            if (step === 0 && !route) {
+                alert("בבקשה תבחרו קודם מסלול!");
+                return;
+            }
+            if (step < 4) {
+                step++;
+                updateUI();
+            }
+        }
+
+        function prevStep() {
+            if (step > 0) {
+                step--;
+                updateUI();
+            }
+        }
+
+        function goToStep(s) {
+            if (s === 0 || route) {
+                step = s;
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            // Update step content visibility
+            document.querySelectorAll('.step-content').forEach((el, idx) => {
+                el.classList.toggle('active', idx === step);
+            });
+
+            // Update Progress Bar
+            const percent = (step / 4) * 100;
+            document.getElementById('progress-bar').style.width = percent + "%";
+            
+            document.querySelectorAll('.step-indicator').forEach((el, idx) => {
+                if (idx <= step) {
+                    el.classList.add('bg-blue-600', 'text-white', 'border-blue-100');
+                    el.classList.remove('bg-white', 'text-slate-400');
+                } else {
+                    el.classList.remove('bg-blue-600', 'text-white', 'border-blue-100');
+                    el.classList.add('bg-white', 'text-slate-400');
+                }
+            });
+
+            // Update Header
+            const config = stepConfig[step];
+            document.getElementById('step-title').innerText = config.title;
+            document.getElementById('step-subtitle').innerText = config.subtitle;
+            document.getElementById('step-icon').setAttribute('data-lucide', config.icon);
+            lucide.createIcons();
+
+            // Footer buttons
+            document.getElementById('btn-back').disabled = step === 0;
+            const btnNext = document.getElementById('btn-next');
+            if (step === 0) btnNext.style.display = 'none';
+            else {
+                btnNext.style.display = 'flex';
+                btnNext.innerHTML = step === 4 ? 'סיימנו!' : 'המשך <i data-lucide="chevron-left" class="w-5 h-5"></i>';
+                if (step === 4) generateFinalPrompt();
+            }
+            lucide.createIcons();
+        }
+
         function generateFinalPrompt() {
-            return `היי, אני רוצה לבנות אפליקציית Web שהיא ${formData.appType || "[סוג]"} עבור ${formData.targetAudience || "[קהל]"}. המטרה: ${formData.problem}.
-איך זה עובד: ${formData.actions}
-קלט: ${formData.inputs}
-תצוגה: ${formData.outputs}
-עיצוב: סגנון ${formData.style}, צבעים: ${formData.colors}, כפתורים: ${formData.buttonStyle}.
-כתוב הכל בקובץ HTML אחד עם הערות בעברית.`;
+            const output = document.getElementById('prompt-output');
+            const targetType = route === 'app' ? "אפליקציית Web אינטראקטיבית" : "אתר אינטרנט להצגת מוצר";
+            
+            const prompt = `היי, אני רוצה שתבנה לי ${targetType} שנקרא/ת "${data.name || "[שם]"}" עבור ${data.audience || "[קהל יעד]"}.
+המטרה המרכזית היא: ${data.problem || "[תיאור מטרה]"}.
+
+איך זה עובד (לוגיקה ותוכן):
+- מבנה ופעולות: ${data.logic || "תיאור פעולות"}
+- קלטים ופריטים: ${data.inputs || "תיאור קלט"}
+
+עיצוב וחוויית משתמש:
+- סגנון ויזואלי: ${data.style}
+${data.customStyle ? `- תיאור סגנון מיוחד: ${data.customStyle}` : ''}
+- צבעים מועדפים: ${data.colors || "בחירת צבעים חופשית"}
+- דגש חשוב: וודא שהממשק רספונסיבי לחלוטין (Mobile First), קריא ונגיש.
+
+הוראות טכניות:
+- כתוב את כל הקוד בקובץ HTML אחד בלבד (כולל CSS ו-JS).
+- אל תשתמש בספריות חיצוניות (Vanilla JS בלבד).
+- הוסף הערות הסבר מפורטות בעברית בתוך הקוד.
+- וודא שהכל עובד מיד עם פתיחת הקובץ.
+
+תביא לי את הקוד המלא, בלי קיצורים.`;
+            
+            output.innerText = prompt;
         }
-        function copyPrompt() {
-            const text = generateFinalPrompt();
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('toast'); toast.style.opacity = '1';
-                setTimeout(() => { toast.style.opacity = '0'; }, 3000);
-            });
+
+        function copyToClipboard() {
+            const text = document.getElementById('prompt-output').innerText;
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            toast.style.transform = 'translate(-50%, 0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 1rem)';
+            }, 3000);
         }
-        window.onload = initApp;
+
+        window.onload = init;
     </script>
 </body>
 </html>
