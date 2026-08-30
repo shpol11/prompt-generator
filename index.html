@@ -3,491 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- תגיות מטא להטמעה אופטימלית בקנבה -->
-    <meta property="og:title" content="מחולל הפרומפט המנצח 🚀">
-    <meta property="og:description" content="כלי אינטראקטיבי לבני נוער ליצירת פרומפטים מדויקים לבניית אפליקציות ואתרים.">
-    <meta property="og:type" content="website">
-    
-    <title>מחולל הפרומפט המנצח 🚀</title>
-    
-    <!-- Tailwind CSS לעיצוב מודרני ומהיר -->
+    <title>מחולל התמונות של החופש הגדול ✨</title>
+    <!-- טעינת פונט Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- טעינת Tailwind CSS לעיצוב רספונסיבי מהיר -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons לאייקונים ויזואליים -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rubik', 'sans-serif'],
+                    },
+                    colors: {
+                        magic: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            blue: '#3b82f6',
+                            yellow: '#fbbf24',
+                            green: '#10b981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
-            font-family: 'Assistant', sans-serif;
-            background-color: #f8fafc;
-            margin: 0;
-            padding: 0;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
         }
-        .step-content {
-            display: none;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-        .step-content.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .glass-card {
+        
+        .glass-panel {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .route-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+
+        .input-bounce:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15);
         }
-        /* התאמות למובייל וקנבה */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
+
+        .result-enter {
+            animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #e2e8f0;
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                max-height: 500px;
+            }
+        }
+
+        /* עיצוב פס גלילה */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
             border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6">
+<body class="p-4 md:p-8 flex items-center justify-center font-sans text-slate-800">
 
-    <div class="w-full max-w-4xl mx-auto">
-        <!-- Header -->
-        <header class="text-center mb-6">
-            <div class="inline-flex p-3 bg-blue-600 rounded-2xl text-white shadow-lg mb-3">
-                <i data-lucide="sparkles" class="w-6 h-6"></i>
+    <main class="glass-panel w-full max-w-2xl mx-auto rounded-3xl p-6 md:p-10 border-4 border-white relative overflow-hidden">
+        
+        <!-- כותרת -->
+        <header class="text-center mb-10">
+            <div class="inline-block bg-magic-50 text-magic-600 rounded-full px-4 py-1 text-sm font-bold mb-4 shadow-sm border border-magic-100">
+                פעילות יצירת תמונה ב-Canva
             </div>
-            <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">מחולל הפרומפט המנצח</h1>
-            <p class="text-slate-500 text-sm font-medium">הופכים רעיון לפרומפט שבינה מלאכותית מבינה בשנייה</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-3 text-slate-800">
+                מחולל התמונות <br class="md:hidden"> של החופש הגדול ✨🏖️
+            </h1>
+            <p class="text-slate-500 text-lg md:text-xl font-medium">
+                ענו על 4 השאלות וניצור לכם תיאור קסום במיוחד!
+            </p>
         </header>
 
-        <!-- Progress Steps -->
-        <div id="progress-container" class="mb-8 px-4 flex justify-between relative max-w-md mx-auto">
-            <div class="absolute top-5 left-4 right-4 h-1 bg-slate-200 -z-10 rounded-full"></div>
-            <div id="progress-bar" class="absolute top-5 right-4 h-1 bg-blue-500 -z-10 rounded-full transition-all duration-500" style="width: 0%"></div>
+        <div class="space-y-6">
             
-            <button onclick="goToStep(0)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-blue-600 text-white border-4 border-white shadow-md transition-all font-bold" data-step="0">1</button>
-            <button onclick="goToStep(1)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="1">2</button>
-            <button onclick="goToStep(2)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="2">3</button>
-            <button onclick="goToStep(3)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="3">4</button>
-            <button onclick="goToStep(4)" class="step-indicator w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-400 border-4 border-white shadow-sm transition-all font-bold" data-step="4">5</button>
+            <!-- 1. דמות -->
+            <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
+                <label for="charInput" class="block text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">👤</span> 1. דמות: מי נמצא בתמונה?
+                </label>
+                <div class="bg-yellow-50 border-r-4 border-yellow-400 p-3 mb-4 rounded-xl text-sm text-yellow-800 shadow-sm leading-relaxed">
+                    <p class="font-bold text-red-500 mb-1">🔒 חשוב מאוד: לא כותבים שמות אמיתיים!</p>
+                    <p>💡 <b>טיפ:</b> רוצים שהדמות תהיה דומה לכם? תארו פרטים ברורים כמו גיל, צבע ואורך שיער, או צבע של בגד אהוב.<br>
+                    <span class="bg-yellow-200/50 px-1 rounded font-medium text-yellow-900">לדוגמה: "ילד בן 9 עם שיער חום קצר וחולצת טריקו ירוקה" או "ילדה בת 10 עם שיער שחור ארוך ושמלה אדומה".</span></p>
+                </div>
+                <input type="text" id="charInput" 
+                    class="input-bounce w-full p-4 rounded-xl border-2 border-blue-200 focus:border-blue-500 focus:outline-none transition-all text-lg placeholder-slate-400"
+                    placeholder="למשל: ילדה בת 10 עם שיער מתולתל ומשקפיים">
+            </div>
+
+            <!-- 2. פעולה -->
+            <div class="bg-green-50/50 p-5 rounded-2xl border border-green-100">
+                <label for="actionInput" class="block text-lg font-bold text-green-900 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">🏃‍♂️</span> 2. פעולה: מה הדמות עושה?
+                </label>
+                <input type="text" id="actionInput" 
+                    class="input-bounce w-full p-4 rounded-xl border-2 border-green-200 focus:border-green-500 focus:outline-none transition-all text-lg placeholder-slate-400"
+                    placeholder="למשל: אוכלת גלידה ענקית או בונה ארמון חול">
+            </div>
+
+            <!-- 3. סביבה -->
+            <div class="bg-purple-50/50 p-5 rounded-2xl border border-purple-100">
+                <label for="locationInput" class="block text-lg font-bold text-purple-900 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">📍</span> 3. סביבה: איפה זה קורה?
+                </label>
+                <input type="text" id="locationInput" 
+                    class="input-bounce w-full p-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:outline-none transition-all text-lg placeholder-slate-400"
+                    placeholder="למשל: בחוף ים בזמן השקיעה">
+            </div>
+
+            <!-- 4. סגנון -->
+            <div class="bg-rose-50/50 p-5 rounded-2xl border border-rose-100">
+                <label for="styleInput" class="block text-lg font-bold text-rose-900 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">🎨</span> 4. סגנון: איך התמונה תיראה?
+                </label>
+                <div class="relative">
+                    <select id="styleInput" 
+                        class="input-bounce appearance-none w-full p-4 pl-10 rounded-xl border-2 border-rose-200 focus:border-rose-500 focus:outline-none transition-all text-lg bg-white font-medium cursor-pointer">
+                        <option value="אנימציה תלת-ממדית">אנימציה תלת-ממדית (כמו בסרטים!)</option>
+                        <option value="ציור צבעי מים עדין">ציור צבעי מים עדין וקסום</option>
+                        <option value="סגנון קומיקס צבעוני">סגנון קומיקס צבעוני ומגניב</option>
+                        <option value="צילום אמיתי ומואר">צילום אמיתי ומואר</option>
+                        <option value="אמנות פיקסלים של פעם">משחק מחשב של פעם (פיקסלים)</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 text-rose-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- כפתור יצירה -->
+            <button onclick="generatePrompt()" 
+                class="w-full bg-gradient-to-r from-magic-500 to-pink-500 hover:from-magic-600 hover:to-pink-600 text-white font-bold text-xl md:text-2xl py-5 rounded-2xl shadow-lg shadow-pink-200 transform transition hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-3">
+                <span>צרו לי פרומפט!</span> 🚀
+            </button>
         </div>
 
-        <!-- Main Card -->
-        <main class="glass-card rounded-[2.5rem] shadow-2xl border border-white overflow-hidden flex flex-col min-h-[500px]">
-            <!-- Step Header -->
-            <div class="bg-slate-50/50 p-6 border-b border-slate-100 flex items-center gap-4">
-                <div id="step-icon-box" class="p-3 bg-white rounded-xl shadow-sm text-blue-600">
-                    <i id="step-icon" data-lucide="map"></i>
-                </div>
-                <div>
-                    <h2 id="step-title" class="text-xl font-bold text-slate-800">בחירת מסלול</h2>
-                    <p id="step-subtitle" class="text-slate-500 text-xs">מה נבנה היום?</p>
-                </div>
-            </div>
-
-            <!-- Scrollable Content -->
-            <div id="content-area" class="p-6 sm:p-8 flex-grow overflow-y-auto custom-scrollbar">
+        <!-- אזור התוצאה (מוסתר כברירת מחדל) -->
+        <div id="resultArea" class="hidden mt-8 opacity-0">
+            <div class="bg-slate-900 p-6 rounded-3xl relative shadow-2xl overflow-hidden border-4 border-slate-800">
                 
-                <!-- Step 0: Route Selection -->
-                <div id="step-0" class="step-content active">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
-                        <button onclick="selectRoute('app')" id="btn-route-app" class="route-card group p-6 rounded-3xl border-4 transition-all flex flex-col items-center gap-4 text-center bg-white border-slate-100 hover:border-blue-200">
-                            <div class="p-4 bg-blue-100 rounded-2xl text-blue-600 group-hover:scale-110 transition-transform">
-                                <i data-lucide="smartphone" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="font-bold text-lg">אפליקציה לפתרון אתגר</h3>
-                            <p class="text-xs text-slate-500">בניית כלי טכני שעוזר לאנשים לפתור בעיה</p>
-                        </button>
-                        <button onclick="selectRoute('site')" id="btn-route-site" class="route-card group p-6 rounded-3xl border-4 transition-all flex flex-col items-center gap-4 text-center bg-white border-slate-100 hover:border-purple-200">
-                            <div class="p-4 bg-purple-100 rounded-2xl text-purple-600 group-hover:scale-110 transition-transform">
-                                <i data-lucide="layout" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="font-bold text-lg">אתר להצגת מוצר</h3>
-                            <p class="text-xs text-slate-500">דף נחיתה תדמיתי שמציג המצאה או שירות</p>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 1: Story & Goal -->
-                <div id="step-1" class="step-content space-y-6">
-                    <div>
-                        <label id="label-name" class="block text-sm font-bold text-slate-700 mb-2">שם הפרויקט</label>
-                        <input type="text" id="input-name" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="איך תקראו לזה?">
-                    </div>
-                    <div>
-                        <label id="label-audience" class="block text-sm font-bold text-slate-700 mb-2">קהל היעד</label>
-                        <input type="text" id="input-audience" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="למי זה מיועד?">
-                    </div>
-                    <div>
-                        <label id="label-problem" class="block text-sm font-bold text-slate-700 mb-2">מה המטרה?</label>
-                        <textarea id="input-problem" oninput="updateData()" rows="3" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="מה הבעיה שזה פותר או מה הערך המרכזי?"></textarea>
-                    </div>
-                </div>
-
-                <!-- Step 2: Logic & Content -->
-                <div id="step-2" class="step-content space-y-6">
-                    <div>
-                        <label id="label-logic" class="block text-sm font-bold text-slate-700 mb-2">איך זה עובד?</label>
-                        <textarea id="input-logic" oninput="updateData()" rows="4" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="תארו את פעולות הכפתורים או את מבנה דף האינטרנט..."></textarea>
-                    </div>
-                    <div>
-                        <label id="label-inputs" class="block text-sm font-bold text-slate-700 mb-2">מה עוד חשוב לכלול?</label>
-                        <input type="text" id="input-inputs" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="קלטים, גלריה, טפסים...">
-                    </div>
-
-                    <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100">
-                        <label class="text-xs font-bold text-blue-700 mb-2 block flex items-center gap-2">
-                            <i data-lucide="zap" class="w-4 h-4"></i> שדרוגים מהירים (קליק להוספה):
-                        </label>
-                        <div id="upgrade-buttons" class="flex flex-wrap gap-2">
-                            <!-- Buttons injected by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Guidance Tips for Students -->
-                    <div id="step-2-tips" class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-slate-800 text-xs leading-relaxed mt-6">
-                        <div class="flex items-center gap-2 mb-3 font-bold text-slate-700">
-                            <i data-lucide="help-circle" class="w-4 h-4"></i>
-                            <span class="text-sm">צריכים עזרה בתיאור המערכת?</span>
-                        </div>
-                        <ul id="logic-tips-list" class="space-y-2 opacity-90">
-                            <!-- Injected by JS based on route -->
-                        </ul>
-                        
-                        <div class="mt-4 pt-4 border-t border-slate-200">
-                            <div class="flex items-center gap-2 mb-2 font-bold text-blue-700">
-                                <i data-lucide="command" class="w-3 h-3"></i>
-                                <span>מושגים שחשוב להכיר:</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 text-[10px]">
-                                <span title="חוויית משתמש"><strong class="text-slate-900">UX:</strong> איך המשתמש מרגיש כשהוא גולש.</span>
-                                <span title="ממשק משתמש"><strong class="text-slate-900">UI:</strong> איך האתר נראה (צבעים, כפתורים).</span>
-                                <span title="התאמה למובייל"><strong class="text-slate-900">Responsiveness:</strong> התאמה לכל מכשיר.</span>
-                                <span title="קריאה לפעולה"><strong class="text-slate-900">CTA:</strong> כפתור שמניע את המשתמש לפעול.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3: Vibe & Style -->
-                <div id="step-3" class="step-content space-y-8">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-4">בחר סגנון עיצובי</label>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <button onclick="selectStyle('מודרני')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="מודרני">מודרני</button>
-                            <button onclick="selectStyle('רטרו')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="רטרו">רטרו</button>
-                            <button onclick="selectStyle('נקי')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="נקי">נקי</button>
-                            <button onclick="selectStyle('כהה')" class="style-btn px-5 py-3 rounded-xl border-2 text-sm font-bold transition-all bg-white border-slate-100 text-slate-600 hover:border-blue-200" data-val="כהה">כהה (Dark)</button>
-                        </div>
-                        
-                        <!-- Free Text Style Box -->
-                        <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
-                            <label class="block text-xs font-bold text-blue-800 mb-2 flex items-center gap-2">
-                                <i data-lucide="edit-3" class="w-4 h-4"></i>
-                                או תארו את הסגנון שלכם במילים שלכם:
-                            </label>
-                            <textarea id="input-custom-style" oninput="updateData()" rows="2" class="w-full p-3 bg-white border border-blue-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-400 text-sm text-slate-800" placeholder="למשל: סגנון של חלל חיצון, מראה של עיתון ישן, אווירה של טבע וצמחים..."></textarea>
-                        </div>
-                    </div>
+                <!-- רקע כוכבים דקורטיבי -->
+                <div class="absolute top-0 right-0 p-4 opacity-20 pointer-events-none text-4xl">✨</div>
+                
+                <h3 class="text-white font-bold text-xl mb-2 text-center">
+                    הנה הפרומפט המוכן שלכם! 🎉
+                </h3>
+                <p class="text-magic-yellow text-center font-medium text-base md:text-lg mb-4">
+                    קראו את הפרומפט ובדקו אותו! תוכלו לערוך ולתקן ממש כאן בתוך התיבה, או לשנות את התשובות שלכם למעלה וליצור פרומפט חדש 👇
+                </p>
+                
+                <div class="mb-6">
+                    <!-- הפכנו את הפסקאות לתיבת טקסט הניתנת לעריכה -->
+                    <textarea id="promptText" 
+                        class="w-full bg-slate-800 text-magic-yellow font-medium text-lg md:text-xl text-right p-4 rounded-xl border-2 border-slate-700 focus:border-blue-500 focus:outline-none transition-all resize-y min-h-[130px] shadow-inner leading-relaxed"
+                        dir="rtl"
+                        oninput="updateCharCount()"></textarea>
                     
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">צבעים מועדפים</label>
-                        <input type="text" id="input-colors" oninput="updateData()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 transition-all text-slate-800" placeholder="למשל: סגול וזהב, כחול וכתום...">
-                    </div>
-                </div>
-
-                <!-- Step 4: Result -->
-                <div id="step-4" class="step-content space-y-6">
-                    <div class="bg-green-50 p-5 rounded-3xl border border-green-100 flex items-start gap-4">
-                        <i data-lucide="check-circle" class="text-green-600 w-6 h-6 shrink-0 mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-green-900">הפרומפט המנצח מוכן!</h4>
-                            <p class="text-xs text-green-700">העתיקו את הטקסט למטה והדביקו אותו בצ'אט של ה-AI.</p>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="w-full h-64 p-5 bg-slate-900 text-slate-300 rounded-3xl font-mono text-xs overflow-auto leading-relaxed border-4 border-slate-800 custom-scrollbar whitespace-pre-wrap select-all" id="prompt-output">
-                            <!-- Generated Prompt Here -->
-                        </div>
-                        <button onclick="copyToClipboard()" class="absolute bottom-4 left-4 bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold shadow-xl hover:bg-blue-700 active:scale-95 transition-all flex items-center gap-2">
-                            <i data-lucide="copy" class="w-4 h-4"></i> העתק פרומפט
+                    <!-- אזור חיווי ומד תווים -->
+                    <div class="flex justify-between items-center mt-2 px-1">
+                        <span id="charCount" class="text-sm font-bold text-slate-300 transition-colors"></span>
+                        <button onclick="scrollToTop()" class="text-sm text-blue-300 hover:text-blue-100 underline transition-colors">
+                            לשנות את התשובות ⬆️
                         </button>
                     </div>
                 </div>
 
+                <button id="copyBtn" onclick="copyToClipboard()" 
+                    class="w-full bg-magic-green hover:bg-emerald-500 text-white font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-lg shadow-lg">
+                    <span id="copyIcon">📋</span>
+                    <span id="copyText">העתקת הפרומפט (הנחיה)</span>
+                </button>
             </div>
-
-            <!-- Footer -->
-            <footer class="p-6 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
-                <button id="btn-back" onclick="prevStep()" class="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-200 transition-all disabled:opacity-20 disabled:pointer-events-none">
-                    <i data-lucide="chevron-right" class="w-5 h-5"></i> חזרה
-                </button>
-                <button id="btn-next" onclick="nextStep()" class="flex items-center gap-2 px-10 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-100 transition-all active:scale-95">
-                    המשך <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                </button>
-            </footer>
-        </main>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-8 py-4 rounded-3xl shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-50 flex items-center gap-3 translate-y-4">
-        <i data-lucide="check-circle" class="text-green-400"></i>
-        <span class="font-bold">הועתק! עכשיו מדביקים ב-Gemini.</span>
-    </div>
+        </div>
+    </main>
 
     <script>
-        // --- State ---
-        let step = 0;
-        let route = null; // 'app' or 'site'
-        const data = {
-            name: '',
-            audience: '',
-            problem: '',
-            logic: '',
-            inputs: '',
-            style: 'מודרני',
-            customStyle: '',
-            colors: ''
-        };
+        function generatePrompt() {
+            // שאיבת הנתונים מהשדות או הצבת ברירת מחדל בעברית
+            const character = document.getElementById('charInput').value.trim() || 'ילד שמח';
+            const action = document.getElementById('actionInput').value.trim() || 'נהנה מהחופש הגדול';
+            const location = document.getElementById('locationInput').value.trim() || 'במקום יפהפה בחוץ';
+            const style = document.getElementById('styleInput').value;
 
-        const stepConfig = [
-            { title: "בחירת מסלול", subtitle: "מה נבנה היום?", icon: "map" },
-            { title: "הסיפור והמטרה", subtitle: "הלב של הפרויקט שלכם", icon: "heart" },
-            { title: "איך זה עובד?", subtitle: "המוח והתוכן של הדף", icon: "brain" },
-            { title: "הווייב והעיצוב", subtitle: "הסטייל והנראות", icon: "palette" },
-            { title: "הפרומפט הסופי", subtitle: "מוכן להעתקה ל-AI", icon: "sparkles" }
-        ];
+            // בניית הפרומפט הסופי בעברית. משפט טבעי וברור שהתלמיד יכול לקרוא.
+            const finalPrompt = `תמונה של ${character}, ${action}, ${location}. סגנון: ${style}. תמונה צבעונית, מוארת ואיכותית.`;
 
-        const upgrades = {
-            app: [
-                { label: "מערכת ניקוד ושיאים", text: "הוסף מערכת ניקוד (Score) ושיא אישי (High Score) כדי להפוך את האפליקציה למשחקית ומהנה." },
-                { label: "מדריך למשתמש חדש", text: "הוסף הסבר קצר (Tutorial) שמופיע בטעינה הראשונה ומסביר איך להשתמש באפליקציה." },
-                { label: "כפתור שיתוף תוצאה", text: "הוסף אפשרות להעתיק קישור או לשתף את ההישגים מהאפליקציה עם חברים." },
-                { label: "מצב לילה", text: "הוסף כפתור שמחליף בין עיצוב בהיר לכהה למראה מקצועי יותר." }
-            ],
-            site: [
-                { label: "גלריית תמונות אינטראקטיבית", text: "הוסף גלריית תמונות שניתן לדפדף בה כדי להציג את המוצר מזוויות שונות." },
-                { label: "ציר זמן של הפרויקט", text: "הוסף אזור שמראה את התפתחות הרעיון - מהדגם הראשון ועד למוצר הסופי." },
-                { label: "שאלות ותשובות (FAQ)", text: "הוסף אזור שעונה על שאלות נפוצות שהתלמידים או המורים עשויים לשאול לגבי ההמצאה." },
-                { label: "אנימציות גלילה", text: "הוסף אפקטים של הופעה (Fade In) כשגוללים מטה כדי שהאתר ייראה מודרני ומושקע." }
-            ]
-        };
+            // הצגת הפרומפט בתוך תיבת העריכה
+            document.getElementById('promptText').value = finalPrompt;
+            
+            // עדכון ספירת התווים ההתחלתית
+            updateCharCount();
+            
+            // חשיפת אזור התוצאה עם אנימציה
+            const resultArea = document.getElementById('resultArea');
+            resultArea.classList.remove('hidden');
+            resultArea.classList.add('result-enter');
+            
+            // גלילה חלקה למטה
+            setTimeout(() => {
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 100);
 
-        const logicTips = {
-            app: [
-                "<strong>ניווט:</strong> איך המשתמש עובר בין מסכים? (למשל: תפריט צדדי או כפתורי 'המשך').",
-                "<strong>משוב מיידי:</strong> מה קורה כשהפעולה מצליחה? (למשל: צליל חיובי או אנימציה של טיפת מים).",
-                "<strong>ניהול נתונים:</strong> האם המידע צריך להישמר לביקור הבא? ציינו זאת.",
-                "<strong>טיפול בשגיאות:</strong> מה קורה אם המשתמש שכח למלא שדה? (הודעת אזהרה אדומה).",
-                "<strong>דוגמה לניסוח:</strong> 'כשלוחצים על הוספה, נוצר כרטיס חדש ברשימה והשדה מתנקה'."
-            ],
-            site: [
-                "<strong>היררכיה ויזואלית:</strong> מה הדבר הראשון שהמשתמש רואה? (כותרת גדולה מושכת ותמונה מרשימה).",
-                "<strong>קריאה לפעולה (CTA):</strong> מה הפעולה הכי חשובה באתר? (למשל: 'הזמינו עכשיו' או 'צרו קשר').",
-                "<strong>תוכן אינטראקטיבי:</strong> האם יש גלריית תמונות שניתן לדפדף בה?",
-                "<strong>מהירות טעינה:</strong> בקשו שהאתר יהיה קל ומהיר, ללא קבצים כבדים.",
-                "<strong>דוגמה לניסוח:</strong> 'האתר מחולק ל-3 חלקים: הסבר על המוצר, גלריית תמונות, וטופס השארת פרטים בתחתית'."
-            ]
-        };
-
-        // --- Logic ---
-
-        function init() {
-            lucide.createIcons();
-            updateUI();
+            // איפוס כפתור ההעתקה במקרה שנוצר פרומפט חדש
+            resetCopyButton();
         }
 
-        function selectRoute(r) {
-            route = r;
-            // Update labels based on route
-            const lName = document.getElementById('label-name');
-            const lAudience = document.getElementById('label-audience');
-            const lProblem = document.getElementById('label-problem');
-            const lLogic = document.getElementById('label-logic');
-            const lInputs = document.getElementById('label-inputs');
-
-            if (route === 'app') {
-                lName.innerText = "סוג האפליקציה";
-                lAudience.innerText = "קהל היעד";
-                lProblem.innerText = "הבעיה שהיא פותרת";
-                lLogic.innerText = "איך האפליקציה עובדת? (לוגיקה)";
-                lInputs.innerText = "מה המשתמש מקליד?";
-                document.getElementById('btn-route-app').classList.add('border-blue-500', 'bg-blue-50');
-                document.getElementById('btn-route-site').classList.remove('border-purple-500', 'bg-purple-50');
+        function updateCharCount() {
+            const textarea = document.getElementById('promptText');
+            const count = textarea.value.length;
+            const counterElement = document.getElementById('charCount');
+            const maxLength = 250;
+            
+            counterElement.innerText = `${count} / ${maxLength} תווים`;
+            
+            if (count > maxLength) {
+                counterElement.classList.remove('text-emerald-400', 'text-slate-300');
+                counterElement.classList.add('text-rose-400');
+                counterElement.innerText += ' ⚠️ חורג מההגבלה של קנבה!';
             } else {
-                lName.innerText = "שם המוצר/המותג";
-                lAudience.innerText = "למה המוצר נועד?";
-                lProblem.innerText = "הערך המרכזי (למה זה טוב?)";
-                lLogic.innerText = "מבנה דף האתר הרצוי";
-                lInputs.innerText = "מה מופיע בגלריה או בתוכן?";
-                document.getElementById('btn-route-site').classList.add('border-purple-500', 'bg-purple-50');
-                document.getElementById('btn-route-app').classList.remove('border-blue-500', 'bg-blue-50');
-            }
-
-            // Update logic tips
-            const tipsList = document.getElementById('logic-tips-list');
-            tipsList.innerHTML = logicTips[route].map(tip => `<li>${tip}</li>`).join('');
-
-            // Update upgrade buttons
-            const upgradeBox = document.getElementById('upgrade-buttons');
-            upgradeBox.innerHTML = upgrades[route].map(u => `
-                <button onclick="addUpgrade('${u.text}')" class="bg-white border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-bold text-blue-600 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                    + ${u.label}
-                </button>
-            `).join('');
-
-            nextStep();
-        }
-
-        function addUpgrade(text) {
-            const input = document.getElementById('input-logic');
-            if (!data.logic.includes(text)) {
-                data.logic += (data.logic ? " " : "") + text;
-                input.value = data.logic;
+                counterElement.classList.remove('text-rose-400', 'text-slate-300');
+                counterElement.classList.add('text-emerald-400');
             }
         }
 
-        function selectStyle(s) {
-            data.style = s;
-            document.querySelectorAll('.style-btn').forEach(btn => {
-                if (btn.getAttribute('data-val') === s) {
-                    btn.classList.add('bg-blue-600', 'border-blue-600', 'text-white', 'shadow-lg');
-                    btn.classList.remove('bg-white', 'text-slate-600');
-                } else {
-                    btn.classList.remove('bg-blue-600', 'border-blue-600', 'text-white', 'shadow-lg');
-                    btn.classList.add('bg-white', 'text-slate-600');
-                }
-            });
-        }
-
-        function updateData() {
-            data.name = document.getElementById('input-name').value;
-            data.audience = document.getElementById('input-audience').value;
-            data.problem = document.getElementById('input-problem').value;
-            data.logic = document.getElementById('input-logic').value;
-            data.inputs = document.getElementById('input-inputs').value;
-            data.colors = document.getElementById('input-colors').value;
-            data.customStyle = document.getElementById('input-custom-style').value;
-        }
-
-        function nextStep() {
-            if (step === 0 && !route) {
-                alert("בבקשה תבחרו קודם מסלול!");
-                return;
-            }
-            if (step < 4) {
-                step++;
-                updateUI();
-            }
-        }
-
-        function prevStep() {
-            if (step > 0) {
-                step--;
-                updateUI();
-            }
-        }
-
-        function goToStep(s) {
-            if (s === 0 || route) {
-                step = s;
-                updateUI();
-            }
-        }
-
-        function updateUI() {
-            // Update step content visibility
-            document.querySelectorAll('.step-content').forEach((el, idx) => {
-                el.classList.toggle('active', idx === step);
-            });
-
-            // Update Progress Bar
-            const percent = (step / 4) * 100;
-            document.getElementById('progress-bar').style.width = percent + "%";
-            
-            document.querySelectorAll('.step-indicator').forEach((el, idx) => {
-                if (idx <= step) {
-                    el.classList.add('bg-blue-600', 'text-white', 'border-blue-100');
-                    el.classList.remove('bg-white', 'text-slate-400');
-                } else {
-                    el.classList.remove('bg-blue-600', 'text-white', 'border-blue-100');
-                    el.classList.add('bg-white', 'text-slate-400');
-                }
-            });
-
-            // Update Header
-            const config = stepConfig[step];
-            document.getElementById('step-title').innerText = config.title;
-            document.getElementById('step-subtitle').innerText = config.subtitle;
-            document.getElementById('step-icon').setAttribute('data-lucide', config.icon);
-            lucide.createIcons();
-
-            // Footer buttons
-            document.getElementById('btn-back').disabled = step === 0;
-            const btnNext = document.getElementById('btn-next');
-            if (step === 0) btnNext.style.display = 'none';
-            else {
-                btnNext.style.display = 'flex';
-                btnNext.innerHTML = step === 4 ? 'סיימנו!' : 'המשך <i data-lucide="chevron-left" class="w-5 h-5"></i>';
-                if (step === 4) generateFinalPrompt();
-            }
-            lucide.createIcons();
-        }
-
-        function generateFinalPrompt() {
-            const output = document.getElementById('prompt-output');
-            const targetType = route === 'app' ? "אפליקציית Web אינטראקטיבית" : "אתר אינטרנט להצגת מוצר";
-            
-            const prompt = `היי, אני רוצה שתבנה לי ${targetType} שנקרא/ת "${data.name || "[שם]"}" עבור ${data.audience || "[קהל יעד]"}.
-המטרה המרכזית היא: ${data.problem || "[תיאור מטרה]"}.
-
-איך זה עובד (לוגיקה ותוכן):
-- מבנה ופעולות: ${data.logic || "תיאור פעולות"}
-- קלטים ופריטים: ${data.inputs || "תיאור קלט"}
-
-עיצוב וחוויית משתמש:
-- סגנון ויזואלי: ${data.style}
-${data.customStyle ? `- תיאור סגנון מיוחד: ${data.customStyle}` : ''}
-- צבעים מועדפים: ${data.colors || "בחירת צבעים חופשית"}
-- דגש חשוב: וודא שהממשק רספונסיבי לחלוטין (Mobile First), קריא ונגיש.
-
-הוראות טכניות:
-- כתוב את כל הקוד בקובץ HTML אחד בלבד (כולל CSS ו-JS).
-- אל תשתמש בספריות חיצוניות (Vanilla JS בלבד).
-- הוסף הערות הסבר מפורטות בעברית בתוך הקוד.
-- וודא שהכל עובד מיד עם פתיחת הקובץ.
-
-תביא לי את הקוד המלא, בלי קיצורים.`;
-            
-            output.innerText = prompt;
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                document.getElementById('charInput').focus();
+            }, 500);
         }
 
         function copyToClipboard() {
-            const text = document.getElementById('prompt-output').innerText;
-            const el = document.createElement('textarea');
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-
-            const toast = document.getElementById('toast');
-            toast.style.opacity = '1';
-            toast.style.transform = 'translate(-50%, 0)';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translate(-50%, 1rem)';
-            }, 3000);
+            // שאיבת הטקסט מה-value של ה-textarea
+            const textToCopy = document.getElementById('promptText').value;
+            
+            // שימוש ב-execCommand לתאימות מקסימלית (כולל iframe)
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            
+            // הסתרת הטקסטאריה מהמסך
+            textArea.style.position = "fixed";
+            textArea.style.top = "-999px";
+            textArea.style.left = "-999px";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showSuccessCopy();
+                } else {
+                    showErrorCopy();
+                }
+            } catch (err) {
+                showErrorCopy();
+            }
+            
+            document.body.removeChild(textArea);
         }
 
-        window.onload = init;
+        function showSuccessCopy() {
+            const btn = document.getElementById('copyBtn');
+            const icon = document.getElementById('copyIcon');
+            const text = document.getElementById('copyText');
+            
+            btn.classList.remove('bg-magic-green', 'hover:bg-emerald-500');
+            btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            
+            icon.innerText = '✅';
+            text.innerText = 'הועתק בהצלחה! אפשר להדביק בקנבה';
+            
+            // החזרה למצב רגיל אחרי 3 שניות
+            setTimeout(resetCopyButton, 3000);
+        }
+
+        function showErrorCopy() {
+            const text = document.getElementById('copyText');
+            text.innerText = 'שגיאה בהעתקה, אנא העתיקו ידנית';
+        }
+
+        function resetCopyButton() {
+            const btn = document.getElementById('copyBtn');
+            const icon = document.getElementById('copyIcon');
+            const text = document.getElementById('copyText');
+            
+            btn.classList.add('bg-magic-green', 'hover:bg-emerald-500');
+            btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            
+            icon.innerText = '📋';
+            text.innerText = 'העתקת הפרומפט (הנחיה)';
+        }
     </script>
 </body>
 </html>
